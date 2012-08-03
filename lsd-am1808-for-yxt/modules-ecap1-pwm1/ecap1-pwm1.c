@@ -37,11 +37,11 @@
 #include <linux/clk.h>
 #include "cslr_syscfg01_am1808.h"
 
-#define DEVICE_NAME "pwm3" //设备名(/dev/pwm) 
+#define DEVICE_NAME "pwm2" //设备名(/dev/pwm) 
 
-#define MOTOR_MAGIC 'W'
-#define SET_PWM3_ON	_IOW(MOTOR_MAGIC, 2,int)
-#define SET_PWM3_OFF 	_IOW(MOTOR_MAGIC, 3,int)
+#define MOTOR_MAGIC 'E'
+#define SET_PWM2_ON	_IOW(MOTOR_MAGIC, 2,int)
+#define SET_PWM2_OFF 	_IOW(MOTOR_MAGIC, 3,int)
 
 struct ecap
 {
@@ -109,7 +109,7 @@ int fn_ecap_setpol(int pol)
 
 int fn_ecap_setperiod(unsigned long period_ticks)
 {
-	unsigned long reg_val;	
+	unsigned short reg_val;
 	// 设置周期
 	// p->period_ticks为周期计数器
 	// 设定周期的值
@@ -128,7 +128,7 @@ int fn_ecap_setperiod(unsigned long period_ticks)
 
 int fn_ecap_setduty(unsigned long duty_ticks)
 {
-	unsigned long reg_val;	
+	unsigned short reg_val;
 	// 设置占空比
 	// 设置为APWM模式  计数器运行模式
 	__raw_writew(ECTRL2_MDSL_ECAP | ECTRL2_SYNCOSEL_MASK | 
@@ -193,7 +193,7 @@ static int am1808_led_ioctl(
 	//printk("cmd is %d \n",cmd);
    	switch (cmd)
    	{
-       		case SET_PWM3_ON:
+       		case SET_PWM2_ON:
 		ecap2_config.freq = p_ecap->freq;
 		ecap2_config.duty = p_ecap->duty;  // 1-100
 		ecap2_config.tick_hz = 150000000;
@@ -201,7 +201,7 @@ static int am1808_led_ioctl(
 		ecap2_config.duty_ticks =(ecap2_config.period_ticks*ecap2_config.duty)/100;
        		fn_pwm_init();
       		break;
-      		case SET_PWM3_OFF:
+      		case SET_PWM2_OFF:
        		fn_pwm_exit();
        		break;       
        		default:
@@ -253,7 +253,7 @@ static int __init dev_init(void)
 	//g_u32_pwm_output_freq = 38000;
        	//fn_pwm_init();
 	//fn_pwm_exit();		
-	ecap2_config.mmio_base = DA8XX_ECAP2_BASE;
+	ecap2_config.mmio_base = DA8XX_ECAP1_BASE;
 	ecap2_config.freq = 38000;
 	ecap2_config.duty = 50;  // 1-100
 	ecap2_config.tick_hz = 150000000;

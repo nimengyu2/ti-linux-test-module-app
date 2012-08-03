@@ -2,13 +2,14 @@
 #include <stdlib.h> 
 #include <unistd.h> 
 #include <sys/ioctl.h> 
-#include "ecap2-pwm2.h"
+#include "ecap1-pwm1.h"
+ 
 
-#define DEVICE_NAME "pwm3" //设备名(/dev/pwm) 
+#define DEVICE_NAME "pwm2" //设备名(/dev/pwm) 
 
-#define MOTOR_MAGIC 'W'
-#define SET_PWM3_ON	_IOW(MOTOR_MAGIC, 2,int)
-#define SET_PWM3_OFF 	_IOW(MOTOR_MAGIC, 3,int)
+#define MOTOR_MAGIC 'E'
+#define SET_PWM2_ON	_IOW(MOTOR_MAGIC, 2,int)
+#define SET_PWM2_OFF 	_IOW(MOTOR_MAGIC, 3,int)
 
 struct ecap
 {
@@ -27,7 +28,7 @@ struct ecap ecap2_config;
 int fn_pwm_output_on(unsigned long u32_freq)
 { 
 	int fd; 	
-	fd = open("/dev/pwm3", 0); 
+	fd = open("/dev/pwm2", 0); 
         if (fd < 0) 
 	{ 
            perror("open device error"); 
@@ -35,7 +36,7 @@ int fn_pwm_output_on(unsigned long u32_freq)
         } 
        ecap2_config.freq = u32_freq;
        ecap2_config.duty = 50;
-       ioctl(fd, SET_PWM3_ON,(unsigned long*)(&ecap2_config)); 
+       ioctl(fd, SET_PWM2_ON,(unsigned long*)(&ecap2_config)); 
        close(fd); 
 }
 
@@ -43,13 +44,13 @@ int fn_pwm_output_on(unsigned long u32_freq)
 int fn_pwm_output_off(void)
 { 
 	int fd; 	
-	fd = open("/dev/pwm3", 0); 
+	fd = open("/dev/pwm2", 0); 
         if (fd < 0) 
 	{ 
            perror("open device error"); 
            return 0;
         } 
-       ioctl(fd, SET_PWM3_OFF,(unsigned long*)(&ecap2_config)); 
+       ioctl(fd, SET_PWM2_OFF,(unsigned long*)(&ecap2_config)); 
        close(fd); 
 }
 
