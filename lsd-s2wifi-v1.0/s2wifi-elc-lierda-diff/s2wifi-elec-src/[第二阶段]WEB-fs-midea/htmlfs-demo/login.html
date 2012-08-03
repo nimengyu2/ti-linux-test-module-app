@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="./styles.css" rel="stylesheet" media="screen">
+<title>Login</title>
+
+<script type='text/javascript' language='JavaScript'>
+var vloginstat = 0;
+var vssid = "TEST-15";
+var vencrytype = 3;
+var vwifipassword = "";
+var vstaticip = 1;
+var vwlansip = "192.168.1.80";
+var vwlanmip = "255.255.255.0";
+var vwlangip = "192.168.1.1";
+var vwlandip = "192.168.1.1";
+
+var vsocketlp = 1234;
+var vsocketrp = 5689;
+var vsocketmode = 0;
+var vsocketprol = 0;
+var vsocketrip = "192.168.1.100";
+
+var vbaudrate = 115200;
+var vdatasize = 8;
+var vparity = 0;
+var vstop = 1;
+var vflow = 0;
+</script>
+
+<script type="text/javascript" src="cfg.js">
+</script>
+</head>
+<body onLoad="SetFormDefaults();">
+<div align="center">
+<table width="778" height="179" border="0" cellpadding="0" cellspacing="0" style="text-align: left; width: 778 ; height: 66px;">
+<tbody>
+<tr>
+<td width="389" style="vertical-align: top; text-align: left; width: 100%;">
+<img src="logo/logo.png" width="278" height="89"></td>
+<td width="389" colspan=10width="1016" style="vertical-align: top; text-align: left; width: 100%;"><img src="logo/welcome.png" width="500" height="89"></td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><hr width="778" size="2" noshade class="STYLE10" />
+  <p class="box">&nbsp;</p>
+  <p class="box">&nbsp;</p>
+  <p class="box">&nbsp;</p>
+  <p class="box">&nbsp;</p></td>
+</tr>
+<tr>
+<td>
+<form action="login.cgi" method="get" name="login">
+<table width="50%" align="center" cellpadding="0" cellspacing="1">
+<tbody>
+<tr>
+<td><div align="center"><strong>Username:
+</strong></div></td>
+<td width="40%">
+<div align="left">
+<input name="username" type="text" class="list" value="admin" size="10" maxlength="10">
+</div></td>
+</tr>
+<tr>
+<td>
+  <div align="center"><strong>Password:</strong></div></td>
+<td>
+<div align="left">
+<input name="password" type="password" class="list" size="10" maxlength="10">
+</div></td>
+</tr>
+<tr>
+<td colspan="3" rowspan="1" align="center">
+<div align="right"></div></td>
+</tr>
+</tbody>
+</table>
+</form>
+</tr>
+</tbody>
+</table>
+<p>
+  <input name="submit" type="submit" class="button" id="loginbtn" onClick="do_login_apply();" value="Login">
+  <input name="submit" type="submit" class="button" onClick="do_login_reset();" value="Reset">
+  <input type="submit" class="button" onClick="do_login_quite();" value="Quit">
+</p>
+<hr width="778" size="2" class="STYLE10" />
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<div align="center" class="STYLE7">
+2011 (C) Copyright 
+<a href="http://www.midea.com" target="_blank">
+www.midea.com</a>
+, All right reserved</div>
+<div align="center" class="STYLE5">
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

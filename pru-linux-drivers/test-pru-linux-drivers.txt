@@ -1,0 +1,42 @@
+make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- uImage
+cp arch/arm/boot/uImage /tftpboot
+
+// 安装module
+make modules ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi-
+make modules_install INSTALL_MOD_PATH=/am1808/nfs ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi-
+
+// 注意需要bin文件，放置在本文件夹下
+// 测试软件串口
+modprobe  suart_emu suart_timeout=5
+// 测试软件串口+ESAM
+modprobe  sc_rdr suart_timeout=5
+// 测试命令
+microcom  -s 9600 /dev/ttySU0
+cat 124.txt > /dev/ttySU0
+./nanocom /dev/ttySU0 -b 9600 -p n -s 1 -d 8 -f n -e n
+
+
+// 测试ESAM
+// 加载模块
+modprobe sc_rdr
+// 测试hander_test
+handler_test -1 -A /usr/lib/ifd-ti-pru-sc/libtiserial.so /dev/ttySU4
+// 测试pcsc
+./pcsc_test
+
+
+// TI参考命令
+Soft-UART
+$ modprobe  suart_emu suart_timeout=<timeout in ms>
+               Default timeout set to 5ms.
+SmartCard + Soft-UART
+$ modprobe  sc_rdr suart_timeout=<timeout in ms>
+               Default timeout set to 5ms.
+
+microcom -s <baud> /dev/ttySUn
+./nanocom /dev/ttySU<number> -b <baud rate> -p 
+<parity (n, e, o)> -s <stop bits (1 or 2)> -d <Data bits
+ (7 or 8)> -f <flow control setting (n)> -e <echo setting 
+(n)>
+
+

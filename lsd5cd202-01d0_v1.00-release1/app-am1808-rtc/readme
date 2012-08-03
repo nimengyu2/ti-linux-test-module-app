@@ -1,0 +1,5 @@
+make i2c_rx8025t_test_wr
+make i2c_rx8025t_test_rd
+
+./i2c_rx8025t_test_wr
+./i2c_rx8025t_test_rd

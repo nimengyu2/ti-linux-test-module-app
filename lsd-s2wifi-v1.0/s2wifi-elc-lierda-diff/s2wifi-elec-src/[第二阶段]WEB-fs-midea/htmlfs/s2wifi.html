@@ -1,0 +1,678 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="./styles.css" rel="stylesheet" media="screen">
+<title>
+Configure Page
+</title>
+
+<script type='text/javascript' language='JavaScript'>
+var vloginstat = 0;
+var vssid = "TEST-15";
+var vencrytype = 3;
+var vwifipassword = "";
+var vstaticip = 1;
+var vwlansip = "192.168.1.80";
+var vwlanmip = "255.255.255.0";
+var vwlangip = "192.168.1.1";
+var vwlandip = "192.168.1.1";
+
+var vsocketlp = 1234;
+var vsocketrp = 5689;
+var vsocketmode = 0;
+var vsocketprol = 0;
+var vsocketrip = "192.168.1.100";
+
+var vbaudrate = 115200;
+var vdatasize = 8;
+var vparity = 0;
+var vstop = 1;
+var vflow = 0;
+</script>
+
+<script type="text/javascript" src="cfg.js">
+</script>
+</head>
+<body onLoad="SetFormDefaults();">
+<div align="center">
+<table width="778" height="179" border="0" cellpadding="0" cellspacing="0" style="text-align: left; width: 778 ; height: 66px;">
+<tbody>
+<tr>
+<td width="389" style="vertical-align: top; text-align: left; width: 100%;">
+<a href="http://www.lierda.com" target="_blank">
+<span title="Go to Lierda website">
+<img src="logo/logo.gif" width="237" height="72" border="0" align="middle" />
+</samp>
+</a>
+</td>
+<td width="389" colspan=10width="1016" style="vertical-align: top; text-align: left; width: 100%;">
+<table width="200" height="70" border="0" align="right">
+<tr>
+<td height="66">
+<div align="right" class="STYLE9">
+<div align="right">
+<h5 class="STYLE10">
+Serial to WIFI Module
+<br>
+LSD-S2WIFI_V1.0
+</h5>
+<p class="STYLE10">
+<span title="Reset S2WIFI module. Reboot will take a few seconds, usually is 30s.">
+<input name="submit2" type="submit" class="btn" onClick="do_module_reset();" value="AP  >>>  STA">
+</p>
+</div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr width="778" size="5" class="STYLE10" />
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<h3 class="box">
+Login
+</h3>
+<span title="Login">
+<input type="submit" id="loginbtn" class="button" onClick="do_login_apply();" value="Login">
+</span>
+<span title="Reset Login">
+<input type="submit" class="button" onClick="do_login_reset();" value="Reset">
+</span>
+<hr width="778" size="4" />
+</td>
+</tr>
+<tr>
+<td>
+<form action="login.cgi" method="get" name="login">
+<table cellpadding="0" cellspacing="1" width="100%">
+<tbody>
+<tr>
+<td width="30%" class="gr">
+<span title="Login username, default is admin, should be less than 10 characters.">
+Username:
+</span>
+</td>
+<td width="30%" rowspan="2">
+<a id="ploginstat">
+</a>
+</td>
+<td width="40%">
+<div align="left">
+<input name="username" type="text" class="list" value="admin" size="10" maxlength="10">
+<span class="STYLE11">
+*
+</span>
+</div>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Login password, should be less than 10 characters.">
+Password:
+</span>
+</td>
+<td>
+<div align="left">
+<input name="password" type="password" class="list" size="10" maxlength="10">
+<span class="STYLE11">
+*
+</span>
+</div>
+</td>
+</tr>
+<tr>
+<td colspan="3" rowspan="1" align="center">
+<div align="right">
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<h3 class="box">
+WLAN Configure
+</h3>
+<span title="Save new WLAN configure">
+<input type="submit" id="wlanbtn" class="button" value="Update" onClick="do_wlan_apply();">
+</span>
+<span title="Reset WLAN configure">
+<input type="submit" class="button" value="Reset" onClick="do_wlan_reset();">
+</span>
+<hr width="778" size="4" />
+</td>
+</tr>
+<tr>
+<td>
+<form action="wlan.cgi" method="get" name="wlan">
+<table cellpadding="0" cellspacing="1" width="100%">
+<tbody>
+<tr>
+<td width="30%" class="gr">
+</td>
+<td width="30%" class="gl">
+Current
+</td>
+<td width="40%" class="gl">
+Updated
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="SSID, should be less than 32 characters. Example: TEST-15">
+SSID:
+</span>
+</td>
+<td>
+<a id="pssid">
+</a>
+</td>
+<td>
+<input name="ssid" class="wlan" id="ssid" value="TEST-15" maxlength="32">
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Encryption type, None,WEP-open,WEP-share, WPA or WPA2.">
+Encryption Type:
+</span>
+</td>
+<td>
+<a id="pencrytype">
+</a>
+</td>
+<td>
+<select name="encrytype" size="1" class="list" id="encrytype" onChange="SetWLANState();">
+<option value="0">
+None
+</option>
+<option value="1">
+WEP-open
+</option>
+<option value="2">
+WEP-share
+</option>
+<option value="3">
+WPA or WPA2
+</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="WIFI password, please check your router's encryption type and password. Example: 123456">
+WIFI Password:
+</span>
+</td>
+<td>
+<a id="pwifipassword">
+</a>
+</td>
+<td>
+<input name="wifipassword" type="password" class="wlan" id="wifipassword" maxlength="63">
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="If you select DHCP, you should make sure the router have opened DHCP server. Otherwise, you should enter static IP address, subnet mask, gateway, and DNS manually.">
+Address Type: 
+</td>
+<td>
+<a id="pstaticip">
+</a>
+</td>
+<td>
+<div align="left">
+<select name="staticip" size="1" class="list" onChange="SetWLANState();">
+<option value="0">
+DHCP
+</option>
+<option value="1">
+Static IP
+</option>
+</select>
+</div>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="You should select Static IP first. Example: 192.168.1.20">
+Static IP Address:
+</td>
+<td>
+<a id="pwlansip">
+</a>
+</td>
+<td>
+<div align="left">
+<input name="wlansip" class="ip" maxlength="15">
+</div>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="You should select Static IP first. Make sure the Subnet ID of S2WIFI module is the same as your router. Example: 255.255.255.0">
+Subnet Mask:
+</td>
+<td>
+<a id="pwlanmip">
+</a>
+</td>
+<td>
+<div align="left">
+<input name="wlanmip" class="ip" maxlength="15">
+</div>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="You should select Static IP first. Check the IP of your router. Example:192.168.1.1">
+Default Gateway:
+</td>
+<td>
+<a id="pwlangip">
+</a>
+</td>
+<td>
+<div align="left">
+<input name="wlangip" class="ip" maxlength="15">
+</div>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="You should select Static IP first. DNS always is the same as the IP of your router. Example:192.168.1.1">
+DNS Server:
+</td>
+<td>
+<a id="pwlandip">
+</a>
+</td>
+<td>
+<div align="left">
+<input name="wlandip" class="ip" maxlength="15">
+</div>
+</td>
+</tr>
+<tr>
+<td colspan="3" rowspan="1" align="center">
+<div align="right">
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<h3 class="box">
+WIFI Port Configure
+</h3>
+<span title="Save new WIFI port configure">
+<input type="submit" id="wifibtn" class="button" value="Update" onClick="do_wifi_apply();">
+</span>
+<span title="Reset WIFI port configure">
+<input type="submit" class="button" value="Reset" onClick="do_wifi_reset();">
+</span>
+<hr width="778" size="4" />
+</td>
+</tr>
+<tr>
+<td>
+<form name="wifi" method="get" action="wifi.cgi">
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td width="30%" class="gr">
+</td>
+<td width="30%" class="gl">
+Current
+</td>
+<td width="40%" class="gl">
+Updated
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Local socket port number, this port number is required between 1 and 65535">
+Local Socket Port Number: 
+</span>
+</td>
+<td>
+<a id="psocketlp">
+</a>
+</td>
+<td>
+<input name="socketlp" class="port" size="6" maxlength="5">
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Remote socket  port number, this port number is required between 1 and 65535.">
+Remote Socket Port Number: 
+</span>
+</td>
+<td>
+<a id="psocketrp">
+</a>
+</td>
+<td>
+<input name="socketrp" class="port" size="6" maxlength="5">
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Socket work mode. if you select TCP protocol, you should choose Server or Client, otherwise, Ignore it.">
+Socket Mode: 
+</span>
+</td>
+<td>
+<a id="psocketmode">
+</a>
+</td>
+<td>
+<select name="socketmode" size="1" class="list" onChange="SetWIFIState();">
+<option value="0">
+Server
+</option>
+<option value="1">
+Client
+</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Socket protocol. You can choose TCP or UDP.">
+Socket Protocol: 
+</span>
+</td>
+<td>
+<a id="psocketprol">
+</a>
+</td>
+<td>
+<select name="socketprol" size="1" class="list" onChange="SetWIFIState();">
+<option value="0">
+TCP
+</option>
+<option value="1">
+UDP
+</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Romote server IP. If you select TCP&Client or UDP, you should enter remote server IP. Otherwise, S2WIFI module will not work.">
+Remote Server IP: 
+</span>
+</td>
+<td>
+<a id="psocketrip">
+</a>
+</td>
+<td>
+<input name="socketrip" class="ip" maxlength="15">
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<div align="right">
+</div>
+<div>
+<br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<h3 class="box">
+Serial Port Configure
+</h3>
+<span title="Save new Serial port configure">
+<input type="submit" id="serialbtn" class="button" value="Update" onClick="do_serial_apply();">
+</span>
+<span title="Reset Serial port configure">
+<input type="submit" class="button" value="Reset " onClick="do_serial_reset();">
+</span>
+<hr width="778" size="4" />
+</td>
+</tr>
+<tr>
+<td>
+<form name="serial" method="get" action="serial.cgi">
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td width="30%" class="gr">
+</td>
+<td width="30%" class="gl">
+Current
+</td>
+<td width="40%" class="gl">
+Updated
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Serial port baud rate.">
+Baud Rate: 
+</span>
+</td>
+<td>
+<a name="pbaudrate" id="pbaudrate">
+</a>
+bits/second
+</td>
+<td>
+<select name="baudrate" size="1" class="list">
+<option value="230400">
+230400
+</option>
+<option value="115200">
+115200
+</option>
+<option value="57600">
+57600
+</option>
+<option value="38400">
+38400
+</option>
+<option value="19200">
+19200
+</option>
+<option value="14400">
+14400
+</option>
+<option value="9600">
+9600
+</option>
+<option value="4800">
+4800
+</option>
+<option value="2400">
+2400
+</option>
+<option value="1200">
+1200
+</option>
+<option value="600">
+600
+</option>
+<option value="300">
+300
+</option>
+<option value="110">
+110
+</option>
+</select>
+bits/S
+<br>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Serial port data size.">
+Data Size: 
+</span>
+</td>
+<td>
+<a name="pdatasize" id="pdatasize">
+</a>
+ bits/character
+</td>
+<td>
+<select name="datasize" size="1" class="list">
+<option value="5">
+5
+</option>
+<option value="6">
+6
+</option>
+<option value="7">
+7
+</option>
+<option value="8">
+8
+</option>
+</select>
+ bits/character
+<br>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Serial port parity.">
+Parity: 
+</span>
+</td>
+<td>
+<a name="pparity" id="pparity">
+</a>
+</td>
+<td>
+<select name="parity" class="list">
+<option value="0">
+None
+</option>
+<option value="1">
+Odd
+</option>
+<option value="2">
+Even
+</option>
+<option value="3">
+Mark
+</option>
+<option value="4">
+Space
+</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Serial port stop bits.">
+Stop Bits: 
+</span>
+</td>
+<td>
+<a id="pstop">
+</a>
+ bit(s)
+</td>
+<td>
+<select name="stop" size="1" class="list">
+<option value="1">
+1
+</option>
+<option value="2">
+2
+</option>
+</select>
+bit(s)
+<br>
+</td>
+</tr>
+<tr>
+<td class="gr">
+<span title="Serial port flow control.">
+Flow Control: 
+</span>
+</td>
+<td>
+<a id="pflow">
+</a>
+</td>
+<td>
+<select name="flow" size="1" class="list">
+<option value="0">
+None
+</option>
+<option value="1">
+Hardware
+</option>
+</select>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<div align="right">
+</div>
+<div>
+<br>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</form>
+</tr>
+</tbody>
+</table>
+<hr width="778" size="4" class="STYLE10" />
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<div align="center" class="STYLE7">
+2011 (C) Copyright 
+<a href="http://www.lierda.com" target="_blank">
+www.lierda.com
+</a>
+, All right reserved
+</div>
+<div align="center" class="STYLE5">
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

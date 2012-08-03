@@ -1,0 +1,27 @@
+//==============================================================================
+//
+// mkcgifs utils
+//
+// Author: toby <toby.chs@gail.com> 2011.10.13
+//==============================================================================
+
+
+HOW TO ...
+========
+
+Step 1: 
+	Beautify the html file, the outputfile1 should be the same to x.html file
+
+	mkcgifs -b x.html outputfile
+
+Step 2:
+     Do some change for outputfile,
+		1. add js code ?
+		2. add var ?
+		3. ...
+	
+Step 3:
+	Transformat outputfile to x.c & x.h, then you can add those files to your 
+	c/c++ projects.
+	
+	mkcgifs -f outputfile x.c

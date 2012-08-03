@@ -1,0 +1,117 @@
+/* 2011 (C) Copyright www.lierda.com, All right reserved -- toby.chs@gmail.com */
+body {
+    margin: 10px;
+    padding: 0px;
+    font-family: Arial;
+    background-color: white;
+}
+h1 {
+    background-color: white;
+    font-family: Arial;
+    font-size: 24pt;
+    text-decoration: none;
+    font-weight: bold;
+    color: #7c7369;
+}
+h2 {
+    text-align: left;
+}
+h4 {
+    color: #7c7369;
+    font-family: Arial;
+    font-size: 12pt;
+    font-style: italic;
+}
+.grey {
+    background-color: #7c7369;
+    color: white;
+}
+.warning {
+    font-size: 12pt;
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+a {
+    font-style: Arial;
+    font-weight: bold;
+    text-decoration: none;
+    color: #025593;
+}
+.gr {
+    background-color: #81A9E8;
+    color: white;
+    text-align: right;
+	font-weight: bold;
+}
+.gl {
+    background-color: #81A9E8;
+    color: white;
+    text-align: center;
+	font-weight: bold;
+}
+.wlan{
+	width:230px;
+	height:20px;
+}
+.list{
+	width:110px;
+	height:20px;
+}
+.ip{
+	width:110px;
+	height:20px;
+}
+.port{
+	width:50px;
+	height:20px;
+}
+.button{
+	width:50px;
+	height:20px;
+    border: none;
+    background: #81A9E8;
+    color: #fff;
+    font-size: 10px;
+    font-family: Arial;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn{
+	width:115px;
+	height:20px;
+    border: none;
+    background: #81A9E8;
+    color: #fff;
+    font-size: 12px;
+    font-family: Arial;
+    cursor: pointer;
+    font-weight: bold;
+}
+.title{
+	FONT-SIZE: 12px;
+	FONT-FAMILY: Tahoma, Helvetica, Geneva, Arial, sans-serif
+}
+.box {
+	BORDER-RIGHT: #81A9E8 0px solid;
+	PADDING-RIGHT: 10px; 
+	BORDER-TOP: #81A9E8 0px solid; 
+	PADDING-LEFT: 0px; 
+	PADDING-BOTTOM: 0px; 
+	MARGIN: 0px 0px 1px; 
+	BORDER-LEFT: #81A9E8 0px solid; 
+	PADDING-TOP: 0px; 
+	BORDER-BOTTOM: #81A9E8 0px solid; 
+	TEXT-TRANSFORM: uppercase; 
+	BACKGROUND-COLOR: #ffffff
+}
+.STYLE7 {
+	font-size: 12px
+}
+.STYLE10 {
+	color: #025593;
+	border-collapse: collapse;
+}
+.STYLE11 {
+	color: #FF3300;
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="./styles.css" rel="stylesheet" media="screen">
+<title>Access Control</title>
+
+<script type='text/javascript' language='JavaScript'>
+var vloginstat = 0;
+var vssid = "TEST-15";
+var vencrytype = 3;
+var vwifipassword = "";
+var vstaticip = 1;
+var vwlansip = "192.168.1.80";
+var vwlanmip = "255.255.255.0";
+var vwlangip = "192.168.1.1";
+var vwlandip = "192.168.1.1";
+
+var vsocketlp = 1234;
+var vsocketrp = 5689;
+var vsocketmode = 0;
+var vsocketprol = 0;
+var vsocketrip = "192.168.1.100";
+
+var vbaudrate = 115200;
+var vdatasize = 8;
+var vparity = 0;
+var vstop = 1;
+var vflow = 0;
+</script>
+
+<script type="text/javascript" src="cfg.js">
+</script>
+</head>
+<body onLoad="SetFormDefaults();">
+<div align="center">
+<table width="778" height="179" border="0" cellpadding="0" cellspacing="0" style="text-align: left; width: 778 ; height: 66px;">
+<tbody>
+<tr>
+<td width="389" style="vertical-align: top; text-align: left; width: 100%;">
+<img src="logo/logo.png" width="278" height="89"></td>
+<td width="389" colspan=10width="1016" style="vertical-align: top; text-align: left; width: 100%;"><img src="logo/welcome.png" width="500" height="89"></td>
+</tr>
+</tbody>
+</table>
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td><hr width="778" size="2" noshade class="STYLE10" />
+          <p class="box"><a href="base.html"><img src="logo/base.png" width="120" height="25" border="0"></a> <a href="access.html"><img src="logo/access_on.png" width="120" height="25"></a> <a href="system.html"><img src="logo/system.png" width="120" height="25" border="0"></a> <a href="help.html"><img src="logo/help.png" width="120" height="25" border="0"></a></p>
+        <p class="box">&nbsp;</p>
+        <p class="box">&nbsp;</p>
+        <h5 class="box">wireless access control</h5></td>
+    </tr>
+    <tr>
+      <td><form action="wlan.cgi" method="get" name="wlan">
+        <table cellpadding="0" cellspacing="1" width="100%">
+          <tbody>
+            <tr>
+              <td colspan="5" class="gr"><div align="left">
+                <input type="checkbox" name="checkbox" value="1">
+              Start the wireless access control</div></td>
+              </tr>
+            <tr>
+              <td width="5%" class="gr"><input name="radiobutton" type="radio" value="1"></td>
+              <td colspan="4">                Enable the MAC wireless connection in the table</td>
+              </tr>
+            <tr>
+              <td class="gr"><input name="radiobutton" type="radio" value="2" checked></td>
+              <td colspan="4">                Disable the MAC wireless connection in the table</td>
+              </tr>
+            <tr>
+              <td class="gr"><input name="radiobutton" type="radio" value="3"></td>
+              <td colspan="4">IP/MAC binding</td>
+              </tr>
+            <tr>
+              <td colspan="5"><p>&nbsp;</p>
+                <p>&nbsp;</p></td>
+              </tr>
+            <tr>
+              <td class="gr">No.</td>
+              <td class="gr"><div align="center">IP</div></td>
+              <td class="gr"><div align="center">MAC</div></td>
+              <td class="gr"><div align="center"><SPAN leftZone="0|6" rightZone="0|6" space>Description</SPAN></div></td>
+              <td class="gr"><div align="center"><SPAN leftZone="0|6" rightZone="0|6" space>Binding</SPAN></div></td>
+              </tr>
+            <tr>
+              <td class="gr">1</td>
+              <td width="29%"><div align="center">
+                <input name="textfield" type="text" size="15" maxlength="15">
+              </div></td>
+              <td width="22%"><div align="center">
+                <input name="textfield6" type="text" size="17" maxlength="17">
+              </div></td>
+              <td width="22%"><div align="center">
+                <input name="textfield66" type="text" size="15" maxlength="30">
+              </div></td>
+              <td width="22%"><div align="center">
+                <input type="checkbox" name="checkbox2" value="1">
+              </div></td>
+              </tr>
+            <tr>
+              <td class="gr">2</td>
+              <td><div align="center">
+                <input name="textfield2" type="text" size="15" maxlength="15">
+              </div></td>
+              <td><div align="center">
+                <input name="textfield62" type="text" size="17" maxlength="17">
+              </div></td>
+              <td><div align="center">
+                <input name="textfield662" type="text" size="15" maxlength="30">
+              </div></td>
+              <td><div align="center">
+                <input type="checkbox" name="checkbox22" value="1">
+              </div></td>
+              </tr>
+            <tr>
+              <td class="gr">3</td>
+              <td><div align="center">
+                <input name="textfield3" type="text" size="15" maxlength="15">
+              </div></td>
+              <td><div align="center">
+                <input name="textfield63" type="text" size="17" maxlength="17">
+              </div></td>
+              <td><div align="center">
+                <input name="textfield663" type="text" size="15" maxlength="30">
+              </div></td>
+              <td><div align="center">
+                <input type="checkbox" name="checkbox23" value="1">
+              </div></td>
+              </tr>
+            <tr>
+              <td class="gr">4</td>
+              <td><div align="center">
+                <input name="textfield4" type="text" size="15" maxlength="15">
+              </div></td>
+              <td><div align="center">
+                <input name="textfield64" type="text" size="17" maxlength="17">
+              </div></td>
+              <td><div align="center">
+                <input name="textfield664" type="text" size="15" maxlength="30">
+              </div></td>
+              <td><div align="center">
+                <input type="checkbox" name="checkbox24" value="1">
+              </div></td>
+              </tr>
+            <tr>
+              <td class="gr">5</td>
+              <td><div align="center">
+                <input name="textfield5" type="text" size="15" maxlength="15">
+              </div></td>
+              <td><div align="center">
+                <input name="textfield65" type="text" size="17" maxlength="17">
+              </div></td>
+              <td><div align="center">
+                <input name="textfield665" type="text" size="15" maxlength="30">
+              </div></td>
+              <td><div align="center">
+                <input type="checkbox" name="checkbox25" value="1">
+              </div></td>
+              </tr>
+            <tr>
+              <td colspan="5" rowspan="1" align="center">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </form></td>
+    </tr>
+  </tbody>
+</table>
+<p>
+<input name="Back" type="submit" class="button" id="loginbtn" onClick="do_login_apply();" value="Back">
+<input name="next" type="submit" class="button" id="wlanbtn" onClick="do_wlan_apply();" value="Next">
+<input name="Cancel" type="reset" class="button" id="Cancel" onClick="do_wlan_reset();" value="Cancel">
+</p>
+<hr width="778" size="2" class="STYLE10" />
+<table style="text-align: left; width: 778;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+<div align="center" class="STYLE7">
+2011 (C) Copyright 
+<a href="http://www.midea.com" target="_blank">
+www.midea.com</a>
+, All right reserved</div>
+<div align="center" class="STYLE5">
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

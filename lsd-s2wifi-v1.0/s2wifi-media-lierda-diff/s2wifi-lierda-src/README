@@ -1,0 +1,13 @@
+DESCRIBE
+========
+Serial to WIFI Module project.
+LSD-S2WIFI_V1.0
+
+
+HOWTO BUILD
+===========
+1. edit your c code in src or lib directory.
+2. make will use gcc to compile your project.
+3. make CROSS_COMPILE=arm-none-linux-gnueabi- will use the arm CROSS_COMPILE_TOOLS
+   to compile your project.
+4. make clean will clean  your project.

@@ -1,0 +1,143 @@
+[Global]
+CurrentProject=s2wifi.vpj
+[ProjectDates]
+s2wifi.vpj=20111010020044000
+[ActiveConfig]
+s2wifi.vpj=Debug
+[TreeExpansion2]
+- s2wifi.vpj
+  - Source Files
+    - src\at.c
+    - lib\at_lib.c
+    - lib\cmdline.c
+    - wifi\config.c
+    - lib\config_file_lib.c
+    - wifi\create_wpa_cfg.c
+    - lib\debug.c
+    - lib\param_check.c
+    - wifi\pipe.c
+    - wifi\ringbuf.c
+    - src\s2wifi.c
+    - lib\serial.c
+    - wifi\shm.c
+    - wifi\tcp_client.c
+    - wifi\tcp_server.c
+    - wifi\uart0_api.c
+    - wifi\uart_process.c
+    - wifi\uart_wifi_main.c
+    - lib\uartstdio.c
+    - wifi\udp.c
+    - wifi\wifi_mode.c
+    - wifi\wifi_process.c
+    - wifi\wifi_sta_ap.c
+  - Header Files
+    - src\at.h
+    - lib\at_lib.h
+    - lib\cmdline.h
+    - wifi\config.h
+    - lib\config_file_lib.h
+    - wifi\create_wpa_cfg.h
+    - lib\data_types.h
+    - lib\debug.h
+    - lib\param_check.h
+    - wifi\ringbuf.h
+    - lib\serial.h
+    - wifi\shm.h
+    - wifi\tcp_client.h
+    - wifi\tcp_server.h
+    - wifi\uart0_api.h
+    - wifi\uart_pipe.h
+    - wifi\uart_process.h
+    - lib\uartstdio.h
+    - wifi\udp.h
+    - src\version.h
+    - wifi\wifi_mode.h
+    - wifi\wifi_pipe.h
+    - wifi\wifi_process.h
+    - wifi\wifi_sta_ap.h
+  + Resource Files
+  + Bitmaps
+  - Other Files
+    - common.mk
+    - Makefile
+    - lib\Makefile
+    - src\Makefile
+    - README
+    - s2wifi.vpj
+    - s2wifi.vpw
+    - s2wifi.vpwhist
+    - s2wifi.vtg
+scroll:0
+[State]
+SCREEN: 1280 1024 139 0 960 990 0 0 M 0 0 0 0 975 644 0
+CWD: ..\s2wifi
+FILEHIST: 5
+lib\debug.c
+src\at.c
+lib\config_file_lib.h
+lib\config_file_lib.c
+wifi\uart_wifi_main.c
+DEBUG: 0 0 0 0 3 0 gdb
+printf
+strcpy
+std::*
+DEBUG2: 0
+PROJECT_CACHE: 1
+20111010020044000 56 E:\project\LSD-S2WIFI_V1.0__串口转WIFI模块__B_张晓杰__110909\LSD-S2WIFI_V1.0 内部\Code\Src\s2wifi\s2wifi.vpj
+src\at.c
+lib\at_lib.c
+lib\cmdline.c
+wifi\config.c
+lib\config_file_lib.c
+wifi\create_wpa_cfg.c
+lib\debug.c
+lib\param_check.c
+wifi\pipe.c
+wifi\ringbuf.c
+src\s2wifi.c
+lib\serial.c
+wifi\shm.c
+wifi\tcp_client.c
+wifi\tcp_server.c
+wifi\uart0_api.c
+wifi\uart_process.c
+wifi\uart_wifi_main.c
+lib\uartstdio.c
+wifi\udp.c
+wifi\wifi_mode.c
+wifi\wifi_process.c
+wifi\wifi_sta_ap.c
+src\at.h
+lib\at_lib.h
+lib\cmdline.h
+wifi\config.h
+lib\config_file_lib.h
+wifi\create_wpa_cfg.h
+lib\data_types.h
+lib\debug.h
+lib\param_check.h
+wifi\ringbuf.h
+lib\serial.h
+wifi\shm.h
+wifi\tcp_client.h
+wifi\tcp_server.h
+wifi\uart0_api.h
+wifi\uart_pipe.h
+wifi\uart_process.h
+lib\uartstdio.h
+wifi\udp.h
+src\version.h
+wifi\wifi_mode.h
+wifi\wifi_pipe.h
+wifi\wifi_process.h
+wifi\wifi_sta_ap.h
+common.mk
+Makefile
+lib\Makefile
+src\Makefile
+README
+s2wifi.vpj
+s2wifi.vpw
+s2wifi.vpwhist
+s2wifi.vtg
+TBCLASS: 0 0
