@@ -6,3 +6,4 @@ linux-03.20.00.12应该放在
 这样的话编译最容易了
 
 git test add 1
+git test add 2 -- server
