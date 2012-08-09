@@ -7,3 +7,4 @@ linux-03.20.00.12应该放在
 
 git test add 1
 git test add 2 -- server
+git test add 3 --- server
