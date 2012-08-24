@@ -8,6 +8,11 @@
 #include <sys/shm.h>
 #include "test_usb_sata.h"
 
+char usb_str[2][7] = 
+{
+	"usb2.0",
+	"usb1.1",
+};
 
 char scsi_sd[5];
 int usb_test_state = 0;
@@ -157,7 +162,7 @@ int fn_test_am1808_usb(char usb_num)
 	}
 	if(usb_test_state != 3)
 	{
-		printf("ERROR: not found usb scsi sd\n");
+		printf("ERROR: not found usb %s scsi sd\n",usb_str[usb_num]);
 		return -1;
 	}
 
@@ -166,14 +171,14 @@ int fn_test_am1808_usb(char usb_num)
 	
 	if(ret != 0)
     	{
-		printf("ERROR:test_usb cant mount\r\n");
+		printf("ERROR:test %s cant mount\r\n",usb_str[usb_num]);
 		return -1;
     	}
 	else
 	{
 		sprintf(cmd_buf,"umount /dev/%s",scsi_sd);	
 		system(cmd_buf);
-		printf("OK:test_usb ok\r\n");
+		printf("OK:test %s ok\r\n",usb_str[usb_num]);
 	}	
 	return 0;
 }

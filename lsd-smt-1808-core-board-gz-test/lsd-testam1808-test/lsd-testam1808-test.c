@@ -28,6 +28,9 @@ int main(int argc, char **argv)
 	//fn_test_am1808_usb11();
 	fn_test_am1808_mmc();
 	fn_test_am1808_nand();
+	sleep(6);
+	fn_test_am1808_usb(1);
+	fn_test_am1808_usb(2);
 	//fn_test_am1808_sata();
 	//while(1);
 	return 0;
