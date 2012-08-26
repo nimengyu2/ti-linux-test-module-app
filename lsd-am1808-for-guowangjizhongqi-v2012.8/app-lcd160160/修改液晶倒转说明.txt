@@ -1,0 +1,52 @@
+1、修改fn_lcd160160_init()函数中，
+将 fn_lcd160160_write_cmd(0xc4);	 修改成 fn_lcd160160_write_cmd(0xc0);
+这个的意思就是MX倒转，如果MX、MY都倒转发现不是很好处理，因为他的每个点的三个
+4bit的顺序已经反了
+2、修改fn_lcd160160_display_full_screen()函数如下所示
+
+unsigned char g_pu8_lcd1160160_row_data_tmp[81];
+//-----------------------------------------------------------------------------
+//
+// 函数名称  :  fn_lcd160160_display_full_screen 
+// 函数功能  :  LCD 160*160全屏显示
+//
+// 输入参数  :  无
+//
+// 返回参数  :  无
+// 
+//-----------------------------------------------------------------------------
+void fn_lcd160160_display_full_screen(void)
+{
+    short s8_i;
+	unsigned char u8_j;
+	unsigned char u8_tmph,u8_tmpl;
+	unsigned char* pu8_data;
+	pu8_data = (unsigned char*)g_pu8_lcd160160_full_data;
+
+	// 设定起始地址
+	fn_lcd160160_write_cmd(0x60);			//row address LSB
+	fn_lcd160160_write_cmd(0x70);			//row address MSB
+	fn_lcd160160_write_cmd(0x05);			//culomn address LSB
+	fn_lcd160160_write_cmd(0x12);			//culomn address MSB
+
+
+	for(u8_j = 0;u8_j < 160; u8_j++)
+	{
+
+		for(s8_i = 80; s8_i >= 1 ; s8_i--)
+		{
+		   u8_tmpl = (g_pu8_lcd160160_full_data[u8_j][s8_i-1] >> 4)&0x0f;
+		   u8_tmph = (g_pu8_lcd160160_full_data[u8_j][s8_i-1] << 4)&0xf0;
+		   g_pu8_lcd1160160_row_data_tmp[s8_i] = u8_tmph + u8_tmpl; 
+		}
+		g_pu8_lcd160160_full_data[u8_j][s8_i] = 0x00;
+		pu8_data = &g_pu8_lcd1160160_row_data_tmp[80];
+		
+		for(s8_i = 0; s8_i < 27; s8_i++)
+		{
+			fn_lcd160160_write_data(*pu8_data--);
+			fn_lcd160160_write_data(*pu8_data--);
+			fn_lcd160160_write_data(*pu8_data--);	
+		}
+	}
+}
