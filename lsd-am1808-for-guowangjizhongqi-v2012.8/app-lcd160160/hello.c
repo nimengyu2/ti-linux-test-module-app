@@ -1367,6 +1367,7 @@ void OnPaintMainCharacter(tWidget *pWidget, tContext *pContext)
 int
 main(void)
 {
+    fn_am1808_gpio_init();
 
     // 初始化液晶显示
     Formike128x128x16Init();
@@ -1379,7 +1380,7 @@ main(void)
 
     // 按键初始化
     //fn_key_init();
-    fn_am1808_gpio_init();
+   
 
     // 增加背景到根控件下
     WidgetAdd(WIDGET_ROOT, (tWidget *)&g_sBackground);
@@ -1393,7 +1394,7 @@ main(void)
         // 循环处理消息
         WidgetMessageQueueProcess();
 
-		//fn_key_process();
+	fn_key_process();
     }
 
 }

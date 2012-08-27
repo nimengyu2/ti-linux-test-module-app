@@ -44,6 +44,7 @@
 #include <sys/ioctl.h> 
 #include "grlib.h"
 #include "formike128x128x16.h"
+#include "am1808_gpio.h"
 
 #define DEVICE_NAME "am1808-lcd160160" //设备名(/dev/lcd) 
 
@@ -52,21 +53,6 @@
 #define LCD_WRITE_CMD	_IOW(MOTOR_MAGIC1, 3,int)
 #define LCD_WRITE_DATA  _IOW(MOTOR_MAGIC1, 4,int)
 
-#define DEVICE_NAME "am1808-gpio" //设备名(/dev/led) 
-#define MOTOR_MAGIC 'g'
-#define SET_GPIO_AD_RST 		_IOW(MOTOR_MAGIC, 2,int)    // GPIO7[13]
-#define SET_GPIO_LCD_RST  		_IOW(MOTOR_MAGIC, 3,int)	// GPIO7[15]
-#define SET_GPIO_WD_FD  		_IOW(MOTOR_MAGIC, 4,int)	// GPIO7[14]
-#define SET_GPIO_GPRS_DTR  		_IOW(MOTOR_MAGIC, 6,int)	// GPIO7[9]
-#define SET_GPIO_IRDA_CTL  		_IOW(MOTOR_MAGIC, 9,int)	// GPIO8[10]
-#define SET_GPIO_BAT_CTL  		_IOW(MOTOR_MAGIC, 10,int)	// GPIO8[8]
-#define SET_GPIO_LCD_BL  		_IOW(MOTOR_MAGIC, 11,int)	// GPIO7[11]
-
-#define GET_GPIO_BTN_INT  		_IOW(MOTOR_MAGIC, 12,int)	// GPIO7[12]
-#define GET_GPIO_AD_INT  		_IOW(MOTOR_MAGIC, 13,int)	// GPIO8[11]	
-#define GET_GPIO_GPRS_DSR  		_IOW(MOTOR_MAGIC, 5,int)	// GPIO7[10]
-#define GET_GPIO_GPRS_DCD  		_IOW(MOTOR_MAGIC, 7,int)	// GPIO7[8]
-#define GET_GPIO_GPRS_RI  		_IOW(MOTOR_MAGIC, 8,int)	// GPIO8[9]
 
 unsigned char g_u8_lcd160160_fresh_flag = 0;
 int fd_lcd160160; 
@@ -316,17 +302,20 @@ Formike128x128x16Init(void)
       exit(1); 
    }   
 
-   fd_am1808_gpio = open("/dev/am1808-gpio", 0); 
-   if (fd_am1808_gpio < 0) 
-   { 
-       perror("open device am1808-gpio error"); 
-       exit(1); 
-   } 
+   //fd_am1808_gpio = open("/dev/am1808-all-gpio", 0); 
+   //if (fd_am1808_gpio < 0) 
+   //{ 
+   //    perror("open device am1808-all-gpio error"); 
+   //     exit(1); 
+   // } 
 
-   ioctl(fd_am1808_gpio, SET_GPIO_LCD_BL,1); 
-   ioctl(fd_am1808_gpio, SET_GPIO_LCD_RST,0); 
+   //ioctl(fd_am1808_gpio, SET_GPIO_LCD_BL,1); 
+   fn_set_am1808_gpio_value(LCD_BL,1);
+   //ioctl(fd_am1808_gpio, SET_GPIO_LCD_RST,0); 
+   fn_set_am1808_gpio_value(LCD_RST,0);
    usleep(20000);
-   ioctl(fd_am1808_gpio, SET_GPIO_LCD_RST,1); 
+   //ioctl(fd_am1808_gpio, SET_GPIO_LCD_RST,1); 
+   fn_set_am1808_gpio_value(LCD_RST,1);
    usleep(100000);
 
    g_u8_lcd_open_flag = 1;

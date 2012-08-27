@@ -21,13 +21,6 @@
 //#define KEY_CANCEL  3
 
 
-#define KEY_UP  	(4*16+1)
-#define KEY_DOWN  	(4*16+0)
-#define KEY_LEFT  	(4*16+2)
-#define KEY_RIGHT  	(4*16+6)
-#define KEY_OK  	(4*16+7)
-#define KEY_CANCEL  	(4*16+3)
-
 // systick的全局计数变量 
 unsigned long g_u32_systick_count = 0;
 unsigned char g_u8_key_flag = 0;
@@ -129,7 +122,7 @@ void fn_systick_interrupt(void)
 	int i;
 	for(i = 0;i < 6;i++)
 	{
-		u8_current_buttons[i] = u8_old_buttons[i];
+		u8_old_buttons[i] = u8_current_buttons[i] ;
 	}
 	u8_current_buttons[0] = fn_get_am1808_gpio_value(KEY_UP);
 	u8_current_buttons[1] = fn_get_am1808_gpio_value(KEY_DOWN);
@@ -147,6 +140,14 @@ void fn_systick_interrupt(void)
 			break;
 		}
 	}
+#if 0
+	printf("cur[0]=%d,[1]=%d,[2]=%d,[3]=%d,[4]=%d,[5]=%d\n",
+		u8_current_buttons[0],u8_current_buttons[1],u8_current_buttons[2],
+		u8_current_buttons[3],u8_current_buttons[4],u8_current_buttons[5]);
+	printf("old[0]=%d,[1]=%d,[2]=%d,[3]=%d,[4]=%d,[5]=%d\n",
+		u8_old_buttons[0],u8_old_buttons[1],u8_old_buttons[2],
+		u8_old_buttons[3],u8_old_buttons[4],u8_old_buttons[5]);
+#endif
 }
 
 
@@ -163,9 +164,9 @@ void fn_systick_interrupt(void)
 void fn_key_process(void)
 {
   
- usleep(50000); // 50ms
+   usleep(50000); // 50ms
    fn_systick_interrupt(); 
- // 如果有按键按下
+   // 如果有按键按下
    if(g_u8_key_flag == 1)
    {
        // 清除按键标志
@@ -241,6 +242,7 @@ case KEY_UP:
 					   // 判断当前是否在第二屏中
 					   WidgetRemove((tWidget *)&g_sMainMeasureDataDetialSecond);
 					   WidgetAdd((tWidget *)&g_sMainMeasureDataDetialHead, 
+
 					          (tWidget *)&g_sMainMeasureDataDetialFirst); 
 					}
 	
