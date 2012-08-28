@@ -54,13 +54,57 @@
 #include <linux/i2c.h>
 #include <linux/i2c-dev.h>
 
+#if 0
+/*
+ * 定义
+ * struct i2c_rdwr_ioctl_data
+ * struct i2c_msg
+ * 一些用到的宏
+ * 要和内核一样, 请查看
+ * KERNEL_ROOT/include/linux/i2c-dev.h
+ * KERNEL_ROOT/include/linux/i2c.h
+ */
+#define I2C_RETRIES	0x0701
+#define I2C_TIMEOUT	0x0702
+#define I2C_RDWR	0x0707
+
+/*
+ * Define in KERNEL_ROOT/include/linux/i2c.h
+ */
+struct i2c_msg
+{
+	unsigned short addr;
+	unsigned short flags;
+#define I2C_M_TEN		0x0010	/* this is a ten bit chip address */
+#define I2C_M_RD		0x0001	/* read data, from slave to master */
+#define I2C_M_NOSTART		0x4000	/* if I2C_FUNC_PROTOCOL_MANGLING */
+#define I2C_M_REV_DIR_ADDR	0x2000	/* if I2C_FUNC_PROTOCOL_MANGLING */
+#define I2C_M_IGNORE_NAK	0x1000	/* if I2C_FUNC_PROTOCOL_MANGLING */
+#define I2C_M_NO_RD_ACK		0x0800	/* if I2C_FUNC_PROTOCOL_MANGLING */
+#define I2C_M_RECV_LEN		0x0400	/* length will be first received byte */
+	unsigned short len; /* msg length				*/
+	unsigned char *buf; /* pointer to msg data			*/
+};
+
+/*
+ * This is the structure as used in the I2C_RDWR ioctl call
+ * Define in KERNEL_ROOT/include/linux/i2c-dev.h
+ */ 
+struct i2c_rdwr_ioctl_data
+{
+	struct i2c_msg *msgs; /* pointers to i2c_msgs */
+
+	/* nmsgs这个数量决定了有多少开始信号，对于“单开始时序”，取1*/
+	int nmsgs; /* number of i2c_msgs */
+};
+#endif
 
 unsigned char date[7];
 
 /*
  * MAIN FUNCTION
  */
-int main(int argc, char **argv)
+int i2c_rx8025t_test_rd(void)
 {
 	int fd;
 	int ret;
@@ -90,8 +134,8 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 
-	ioctl(fd, I2C_TIMEOUT, 100);/*超时时间*/
-	ioctl(fd, I2C_RETRIES, 5);/*重复次数*/
+	ioctl(fd, I2C_TIMEOUT, 1);/*超时时间*/
+	ioctl(fd, I2C_RETRIES, 2);/*重复次数*/
 
 	/*
 	 * 写操作
@@ -125,7 +169,7 @@ int main(int argc, char **argv)
 		(rx8025_ram_data.msgs[0]).len = 1; // RX8025T目标数据的地址长度
 		(rx8025_ram_data.msgs[0]).addr = 0x32; // RX8025T设备地址
 		(rx8025_ram_data.msgs[0]).flags = 0; // 写操作, 地址
-		(rx8025_ram_data.msgs[0]).buf[0] = u32_i; // RX8025T数据地址
+		(rx8025_ram_data.msgs[0]).buf[0] = u32_i<<4; // RX8025T数据地址
 		(rx8025_ram_data.msgs[1]).len = 1; // 读出的数据长度, 一个字节
 		(rx8025_ram_data.msgs[1]).addr = 0x32;// RX8025T设备地址 
 		(rx8025_ram_data.msgs[1]).flags = I2C_M_RD; // 读操作
@@ -136,7 +180,7 @@ int main(int argc, char **argv)
 			perror("I2C: READ ioctl error");
 		}
 
-		//printf("buf[0] = %x\n", (rx8025_ram_data.msgs[1]).buf[0]);
+		printf("buf[0] = %x\n", (rx8025_ram_data.msgs[1]).buf[0]);
 		date[u32_i] = (rx8025_ram_data.msgs[1]).buf[0];
 		usleep(1000*10);
 	}	
@@ -150,6 +194,13 @@ int main(int argc, char **argv)
 	close(fd);
 
 	return 0;
+}
+
+
+
+int main(int argc, char **argv)
+{
+	i2c_rx8025t_test_rd();
 }
 
 /**

@@ -101,16 +101,43 @@ struct i2c_rdwr_ioctl_data
 
 unsigned char date[7];
 
+
+struct data
+{
+	unsigned char sec;
+	unsigned char min;
+	unsigned char hour;
+	unsigned char week;
+	unsigned char day;
+	unsigned char month;
+	unsigned char year;
+};
+
 /*
  * MAIN FUNCTION
  */
-int main(int argc, char **argv)
+int i2c_rx8025t_test_wr(struct data time)
 {
 	int fd;
 	int ret;
 	unsigned long u32_i;
+
+
+/*	struct data time;
+	time.sec=0;
+	time.min=0;
+	time.hour=0;
+	time.week=0;
+	time.day=0;
+	time.month=0;
+	time.year=0;*/
+
 	struct i2c_rdwr_ioctl_data rx8025_ram_data;
 
+
+        //sscanf(argv[2],"%d", &time);
+   
+   
 	fd = open("/dev/i2c-1", O_RDWR);
 
 	/*
@@ -142,6 +169,7 @@ int main(int argc, char **argv)
 	 */
 #if 1
 	(rx8025_ram_data.msgs[0]).buf = (unsigned char*)malloc(2);
+/*
 	date[0] = 0x12;   	// sec
 	date[1] = 0x12;		// min
 	date[2] = 0x12;		// hour
@@ -149,6 +177,14 @@ int main(int argc, char **argv)
 	date[4] = 0x12;		// day
 	date[5] = 0x12;		// month
 	date[6] = 0x15;		// year
+*/
+	date[0] = time.sec;   		// sec
+	date[1] = time.min;		// min
+	date[2] = time.hour;		// hour
+	date[3] = time.week;		// week
+	date[4] = time.day;		// day
+	date[5] = time.month;		// month
+	date[6] = time.year;		// year
 	
 	for(u32_i = 0;u32_i < 7;u32_i++)
 	{
@@ -157,8 +193,9 @@ int main(int argc, char **argv)
 		(rx8025_ram_data.msgs[0]).addr = 0x32; // RX8025T 设备地址
 		(rx8025_ram_data.msgs[0]).flags = 0; // 写操作
 	
-		(rx8025_ram_data.msgs[0]).buf[0] = u32_i; // RX8025T写入目标的地址
+		(rx8025_ram_data.msgs[0]).buf[0] = u32_i<<4; // RX8025T写入目标的地址
 		(rx8025_ram_data.msgs[0]).buf[1] = date[u32_i]; // 要写入RX8025T的数据 
+
 
 		ret = ioctl(fd, I2C_RDWR, (unsigned long)&rx8025_ram_data);
 		if(ret<0)
@@ -206,6 +243,21 @@ int main(int argc, char **argv)
 	close(fd);
 
 	return 0;
+}
+
+
+
+int main(int argc, char **argv) 
+{
+	struct data time;
+	time.sec=7;
+	time.min=6;
+	time.hour=5;
+	time.week=4;
+	time.day=3;
+	time.month=2;
+	time.year=1;
+	i2c_rx8025t_test_wr(time);
 }
 
 /**
