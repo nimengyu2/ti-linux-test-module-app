@@ -65,9 +65,9 @@ int main(void)
 		interval_usec = tv.tv_usec;
 
 		// —” ±10ms
-		//SIM_DlyHMSM(0, 0, 0, 10);
+		SIM_DlyHMSM(0, 0, 0, 10);
 		//nanosleep(&slptm, &slptm);
-		usleep(10000-89);
+		//usleep(10000-89);
 	}
 }
 
