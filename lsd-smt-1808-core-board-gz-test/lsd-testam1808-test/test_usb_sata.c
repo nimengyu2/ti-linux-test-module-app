@@ -349,7 +349,7 @@ int fn_test_am1808_nand(void)
 	int        ret;
 
 	memset( buffer, 0, BUFSIZ );
-	read_fp = popen("ls /dev | grep mtd", "r");
+	read_fp = popen("ls /dev | grep mtd5", "r");
 	if ( read_fp != NULL )
 	{
 		chars_read = fread(buffer, sizeof(char), BUFSIZ-1, read_fp);
@@ -378,7 +378,7 @@ int fn_test_am1808_nand(void)
 		}
 		else
 		{
-			fn_test_uart_log_console_write("test_nand failed:no /dev/mtdblock3 device\r\n");
+			fn_test_uart_log_console_write("test_nand failed:no /dev/mtdblock5 device\r\n");
 			return -1;
 		}
 		pclose(read_fp);
