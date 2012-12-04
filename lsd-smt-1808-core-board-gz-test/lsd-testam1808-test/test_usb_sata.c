@@ -280,10 +280,11 @@ int fn_test_am1808_usb(char usb_num)
 		system(cmd_buf);
 		//printf("OK:test_usb ok\r\n");
 		if(usb_num == 1)
-			fn_test_uart_log_console_write("OK: usb2.0 test_usb ok\r\n");
+			fn_test_uart_log_console_write("test_usb2.0 ok\r\n");
 		else
-			fn_test_uart_log_console_write("OK: usb1.1 test_usb ok\r\n");
+			fn_test_uart_log_console_write("test_usb1.1 ok\r\n");
 	}	
+	
 	return 0;
 }
 
@@ -320,7 +321,7 @@ int fn_test_am1808_mmc(void)
 			}
 #endif
 			test_am1808_usb_sdb_flag = 1;
-			fn_test_uart_log_console_write("test_mmc ok\r\n");
+			fn_test_uart_log_console_write("test_mmc    ok\r\n");
 			return 0;
 		}
 		else
@@ -373,7 +374,7 @@ int fn_test_am1808_nand(void)
 			}
 #endif
 			test_am1808_usb_sdb_flag = 1;
-			fn_test_uart_log_console_write("test_nand ok\r\n");
+			fn_test_uart_log_console_write("test_nand   ok\r\n");
 			return 0;
 		}
 		else

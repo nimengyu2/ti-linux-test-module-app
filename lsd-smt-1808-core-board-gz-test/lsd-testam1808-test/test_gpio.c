@@ -259,6 +259,7 @@ int fn_test_am1808_gpio(void)
 	int i;
 	int j;
 	int value_tmp = 0;
+	int result_cnt = 0;
 
 	// test single gpio output
 #if 0
@@ -270,7 +271,8 @@ int fn_test_am1808_gpio(void)
 	
 	#if (DEBUG_TEST_GPIO >= 1)
 	sprintf(p8_str_buf, "start test am1808 gpio,gpio_num_cnt=%d\r\n",M_GPIO_NUM_CNT);
-	fn_test_uart_log_console_write(p8_str_buf);
+	//fn_test_uart_log_console_write(p8_str_buf);
+	printf(p8_str_buf);
 	
 	#endif
 	// 循环每个引脚
@@ -341,8 +343,9 @@ int fn_test_am1808_gpio(void)
 				sprintf(p8_str_buf, "OK:GPIO%d[%d] <---> GPIO%d[%d]\r\n",
 					g_u16_gpio_num[i]/16,g_u16_gpio_num[i]%16,
 					g_u16_gpio_connect[0]/16,g_u16_gpio_connect[0]%16);
-				fn_test_uart_log_console_write(p8_str_buf);
-				
+				//fn_test_uart_log_console_write(p8_str_buf);
+				printf(p8_str_buf);
+				result_cnt++;
 			}
 			else
 			{
@@ -380,6 +383,15 @@ int fn_test_am1808_gpio(void)
 		//fn_test_uart_log_console_write("\r\n");
 		#endif
 		
+	}
+
+	if(result_cnt == M_GPIO_NUM_CNT)
+	{
+		fn_test_uart_log_console_write("test_gpio   ok\r\n");
+	}
+	else
+	{
+		fn_test_uart_log_console_write("test_gpio   error\r\n");
 	}
 }
 

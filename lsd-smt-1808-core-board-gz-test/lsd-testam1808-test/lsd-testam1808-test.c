@@ -33,6 +33,9 @@ int main(int argc, char **argv)
 	fn_test_am1808_usb(2);
 	//fn_test_am1808_sata();
 	//while(1);
+	fn_test_uart_log_console_write("/------------------------------------------------/\r\n");
+	fn_test_uart_log_console_write("/------------------------------------------------/\r\n");
+	fn_test_uart_log_console_write("\r\n\r\n\r\n\r\n");
 	return 0;
 
 	while (1) // 循环读取数据
@@ -48,6 +51,7 @@ int main(int argc, char **argv)
 #endif
 		
 	} 
+	
 	return 0;
 } 
 

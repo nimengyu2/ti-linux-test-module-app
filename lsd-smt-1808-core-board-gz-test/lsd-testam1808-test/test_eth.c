@@ -34,7 +34,7 @@ int fn_test_am1808_eth(void)
 	}
 #endif	
 	//printf("fn_test_am1808_eth ret=%d\r\n",ret);
-	fn_test_uart_log_console_write("test_eth ok\r\n");
+	fn_test_uart_log_console_write("test_eth    ok\r\n");
 	return 0;
 }
 
