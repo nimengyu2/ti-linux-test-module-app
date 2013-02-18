@@ -40,7 +40,7 @@ unsigned char u8_config_com_databit = 8;
 char u8_config_com_paritybit = 'N';
 unsigned char u8_config_com_stopbit = 1;
 char pu8_socket_localip[15] = "192.168.1.58";
-char pu8_socket_serverip[15] = "192.168.1.101";
+char pu8_socket_serverip[15] = "192.168.1.100";
 unsigned int u8_socket_serverport = 5000;
 
 #if 1

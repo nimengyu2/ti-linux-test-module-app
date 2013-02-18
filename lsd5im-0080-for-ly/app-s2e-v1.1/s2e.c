@@ -14,7 +14,7 @@ unsigned char uart2eth[512];
 unsigned char eth2uart[512];
 unsigned char tcp_client_connect_flag = 0;
 
-#define VERSION "V1.1"
+#define VERSION "V1.12"
 
 #define NAND_UART2ETH_FILE   "/uart2eth.txt"
 #define NAND_ETH2UART_FILE   "/eth2uart.txt"
