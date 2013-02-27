@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	unsigned int u32_wr_cnt = 0;
 	int count = 0;
 	
-	fd = open("/aaaa.txt",O_WRONLY | O_TRUNC | O_SYNC);
+	fd = open("/aaaa.txt",O_WRONLY | O_TRUNC | O_CREAT | O_SYNC);
 	if (fd < 0) 
 	{ 
            	printf("open device error\n"); 
